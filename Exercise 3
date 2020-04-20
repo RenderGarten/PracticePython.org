@@ -1,0 +1,10 @@
+# Take a list, and write a program that prints out all the elements
+# of the list that are less than 5 (Extra, less than user_num_to_check)
+
+import random
+
+generated_list = sorted([random.randint(1,50) for num in range(20)])
+user_num_to_check = int(input('Enter a number between 1-50,lets \nsee how many numbers in the randomly\ngenerated list are LESS than your\nnumber'))
+less_than_list2 = [num for num in generated_list if num < user_num_to_check]
+
+print(f'The following numbers in the random list are less than your number of {user_num_to_check},\n{less_than_list2}')
