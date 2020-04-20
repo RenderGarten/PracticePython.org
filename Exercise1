@@ -1,0 +1,5 @@
+user_name = input('What is your name?')
+user_age = int(input('How old are you?'))
+when_100 = (2020 - user_age) + 100
+
+print('Greetings ',user_name,' You will be 100 years on in the year ',when_100)
