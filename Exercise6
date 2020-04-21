@@ -1,0 +1,11 @@
+# Create a Program that determines if a given string is a palindrome or not 
+
+user_str = input('Please enter a sentence/word to check its palindromeness:')
+usr_list = [item for item in user_str]
+
+if usr_list[::]==usr_list[::-1]:
+    print(f'True,{user_str} is a Palindrome')
+else:
+    print(f'False,{user_str} is not a Palindrome')
+
+
