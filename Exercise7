@@ -1,0 +1,8 @@
+# using list comprehension, return a list of only the even numbers from a given list
+
+import random
+list_a = [random.randint(1,50) for num in range(20)]
+evens = [num for num in list_a if num%2==0]
+
+print('Random List Generation: ',list_a)
+print('Even numbers from list: ',evens)
