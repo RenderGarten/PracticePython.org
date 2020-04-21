@@ -1,0 +1,14 @@
+import random
+
+#Write a program that returns a list that contains only the elements that
+#are common between the lists (without duplicates). Make sure your program
+#works on two lists of different sizes.
+
+random_a = [random.randint(1,100) for num in range(1,random.randint(10,20))]
+random_b = [random.randint(1,100) for num in range(1,random.randint(10,20))]
+
+common_nums = set(sorted([num for num in random_a if num in random_b]))
+
+print(f'List A {sorted(random_a)}')
+print(f'List B {sorted(random_b)}')
+print(f'Common Numbers {common_nums}')
