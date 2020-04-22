@@ -2,9 +2,6 @@ import random
 
 def game_action(P1,P2,P1name,P2name):
     global game_count
-    global game_type
-    dict = {'R':'Rock','P':'Paper','S':'Scissors'}
-
     if P1.upper() not in ['R','P','S'] or P2.upper() not in ['R','P','S']:
         print('Invalid, try again')
         player_select(game_mode0pvptrue())
@@ -49,10 +46,6 @@ def game_action(P1,P2,P1name,P2name):
             print(f'You\'ve Played {game_count} games')
         play_again()
 
-
-
-
-
 def game_mode0pvptrue():
     game_type = input('PVP or PVC?')
     if game_type.upper() == 'PVP':
@@ -72,10 +65,6 @@ def player_select(mode):
         p1_choice = input('Player 1 Choose: R,P,S')
         p2_choice = random.choice(['R','P','S'])
         return p1_choice, p2_choice
-
-
-
-
 
 def play_again():
     P_again = input('Play Again? Y/N')
