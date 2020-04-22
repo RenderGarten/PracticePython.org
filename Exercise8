@@ -1,62 +1,108 @@
-#FIRST VERSION
-
 import random
-def game_action(p1,p2,mode):
-    if mode==2:
-        player2 = 'Computer'
-    elif mode==1:
-        player2 = 'Player 2'
 
-    action_choices = {1: 'Rock', 2: 'Paper', 3: 'Scissors'}
-    print(f'Player One chooses {action_choices[p1]}')
-    print(f'{player2} chooses {action_choices[p2]}')
-    if p1 == p2:
-        print('Its a Draw!')
-    elif p1 == 1:
-        if p2 == 2:
-            print(f'{player2} Wins!')
-        elif p2 == 3:
-            print('Player 1 Wins!')
-    elif p1==2:
-        if p2==1:
-            print('Player 1 Wins!')
-        elif p2==3:
-            print(f'{player2} Wins!')
-    elif p1==3:
-        if p2==1:
-            print(f'{player2} Wins!')
-        elif p2==2:
-            print('Player 1 Wins!')
-def play_again():
-    play_again = input('Would you like to play again? Y/N')
-    if play_again.upper()=='Y':
+def game_action(P1,P2,P1name,P2name):
+    global game_count
+    dict = {'R':'Rock','P':'Paper','S':'Scissors'}
+    if P1.upper == P2.upper():
+        print('Its a DRAW')
+
+    if P1.upper()=='R':
+        if P2.upper()=='P':
+            print(f'{P2name} played {dict[P2.upper()]}')
+            print(f'{P2name} Wins!')
+            game_count += 1
+            print(f'You\'ve Played {game_count} games')
+        elif P2.upper()=='S':
+            print(f'{P2name} played {dict[P2.upper()]}')
+            print(f'{P1name} Wins!')
+            game_count += 1
+            print(f'You\'ve Played {game_count} games')
+        play_again()
+    elif P1.upper()=='P':
+        if P2.upper()=='R':
+            print(f'{P2name} played {dict[P2.upper()]}')
+            print(f'{P1name} Wins!')
+            game_count += 1
+            print(f'You\'ve Played {game_count} games')
+        elif P2.upper()=='S':
+            print(f'{P2name} played {dict[P2.upper()]}')
+            print(f'{P2name} Wins!')
+            game_count += 1
+            print(f'You\'ve Played {game_count} games')
+        play_again()
+    elif P1.upper()=='S':
+        if P2.upper()=='R':
+            print(f'{P2name} played {dict[P2.upper()]}')
+            print(f'{P2name} Wins!')
+            game_count += 1
+            print(f'You\'ve Played {game_count} games')
+        elif P2.upper()=='P':
+            print(f'{P2name} played {dict[P2.upper()]}')
+            print(f'{P1name} Wins!')
+            game_count += 1
+            print(f'You\'ve Played {game_count} games')
+        play_again()
+
+
+
+
+
+def game_mode0pvptrue():
+    game_type = input('PVP or PVC?')
+    if game_type.upper() == 'PVP':
         return True
-    elif play_again.upper()=='N':
+    elif game_type.upper() == 'PVC':
         return False
-
-
-game_running = True
-game_count = 0
-while game_running:
-    game_mode = int(input('GAME MODE:\n1.)Player VS. Player\n2.)Player VS. Computer'))
-
-    if game_mode == 1:
-        player1_input = int(input('Player 1, What Do You Choose?\n1.)Rock\n2.)Paper\n3.)Scissors'))
-        player2_input = int(input('Player 2, What Do You Choose?\n1.)Rock\n2.)Paper\n3.)Scissors'))
-    elif game_mode ==2:
-        player1_input = int(input('Player 1, What Do You Choose?\n1.)Rock\n2.)Paper\n3.)Scissors'))
-        player2_input = random.randint(1, 3)
     else:
         print('Invalid Input')
-        continue
+        game_mode0pvptrue()
+
+def player_select(mode):
+    if mode:
+        p1_choice = input('Player 1 Choose: R,P,S')
+        p2_choice = input('Player 2 Choose: R,P,S')
+        if p1_choice.upper() not in ['R', 'P', 'S'] or p2_choice.upper() not in ['R', 'P', 'S']:
+            player_select(mode)
+        return p1_choice, p2_choice
+    else:
+        p1_choice = input('Player 1 Choose: R,P,S')
+        p2_choice = random.choice(['R','P','S'])
+        if p1_choice.upper() not in ['R', 'P', 'S'] or p2_choice.upper() not in ['R', 'P', 'S']:
+            player_select(mode)
+        return p1_choice, p2_choice
 
 
-    game_action(player1_input,player2_input,game_mode)
-    game_count += 1
-    print(f'{game_count} games played!')
 
-    if play_again() == False:
+
+def play_again():
+    P_again = input('Play Again? Y/N')
+    if P_again.upper() == 'Y':
+        main()
+    elif P_again.upper() == 'N':
+        print('Thanks for Playing')
         game_running = False
-        print('Thanks for Playing!')
+    else:
+        print('Invalid Input')
+        play_again()
+
+def get_name(mode):
+    player_one_name = input('Player 1, What is your name?')
+    if mode:
+        player_two_name = input('Player 2, What is your name?')
+        return player_one_name,player_two_name
+    else:
+        player_two_name = 'Computer'
+        return player_one_name,player_two_name
+
+def main():
+
+    mode = game_mode0pvptrue()
+    play1name,play2name = get_name(mode)
+    p1choice,p2choice = player_select(mode)
+    game_action(p1choice,p2choice,play1name,play2name)
+
+
+game_count = 0
+main()
 
 
